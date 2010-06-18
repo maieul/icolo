@@ -1,16 +1,17 @@
 # -*- coding: utf-8 -*-
 equipe = {
 'sexe' 			: 1, # un pour garçon, 2 pour fille
-'garcons' 		: 5,
-'filles'	 	: 5,
-'canadiens' 	: 2,
-'suisses'		: 2,
-'belges'		: 1,
+'garcons' 		: 0,
+'filles'	 	: 0,
+'canadiens' 	: 6,
+'suisses'		: 4,
+'belges'		: 2,
 'francais'		: 3,
 'stagiaires'	: 3,
 'aquatiques'	: 2,
 'nationalite_directeur' : 0,
-'triplet'		: 0	
+'triplet'		: 0,
+'max_francais'		: True	
 }
 #fonction de calcul des points
 def calcul_point(equipe) :
@@ -54,6 +55,28 @@ def calcul_point(equipe) :
 		points = points - 10
 	affiche_points(9,points)
 	
+	#10 : Si vous ne possédez pas de garçons dans votre équipe, vous perdez 10 points
+	if equipe['garcons'] < 1 :
+		points = points - 10
+	affiche_points(10,points)
+	
+	#11 : Si vous ne possédez pas de fille dans votre équipe, vous perdez 10 points
+	if equipe['filles'] < 1 :
+		points = points - 10
+	affiche_points(11,points) 
+	
+	#12 : Chaque paire de personne canadienne double la valeur d'une personne suisse
+	points = points + min(equipe['canadiens'] / 2,equipe['suisses']) * 6
+	affiche_points(12,points) 
+	
+	#13 : Chaque paire de personne belge double la valeur d'une personne française
+	points = points + min(equipe['belges'] / 2,equipe['francais']) * 5
+	affiche_points(13,points) 
+	
+	#14 Celui qui a le plus de français dans son équipe reçoit un bonus de 3 points par français
+	if equipe['max_francais'] == True: 
+		points = points + 3 * equipe['francais']
+	affiche_points(14,points) 
 	
 def affiche_points(etape,points):
 	print ("regle "+str(etape)+" : "+str(points)+" points")
