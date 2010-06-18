@@ -106,6 +106,39 @@ def calcul_point(equipe) :
 		points =  points = points + 5
 	affiche_points(20,points)
 	
+	#5 : Si votre équipe comporte des personnes de chaque nationalité, votre nombre de points est doublé
+	if equipe['suisses'] >= 1 and equipe['francais'] >= 1 and equipe['belges'] >= 1 and equipe['canadiens'] >= 1:
+		points = points * 2
+	
+	affiche_points(5,points)
+	
+	return points
+
+def verifier_equipe(equipe):
+	if (equipe['garcons'] + equipe['filles']) == (equipe['suisses'] + equipe['francais'] + equipe['belges'] + equipe['canadiens']):
+		return True
+	else : 
+		return False
 def affiche_points(etape,points):
 	print ("regle "+str(etape)+" : "+str(points)+" points")
-calcul_point(equipe)
+
+def poser_question(question,erreur=False):
+	try:
+		if erreur==False:
+			solution = input(question + " ? : ")
+		else :
+			solution = input(question + " ? => Cela doit être un ENTIER  : ")
+		int(solution)
+		return int(solution)
+	except:
+	 	return poser_question(question,True)
+
+def creer_equipe():
+	equipe = {}
+	try :
+		equipe['nom'] = input("Votre nom ? (entourer le de guillemet) : ")
+	except: 
+		return creer_equipe()
+	
+	return equipe()
+print (creer_equipe())
