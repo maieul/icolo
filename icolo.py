@@ -1,38 +1,6 @@
 # -*- coding: utf-8 -*-
-equipe = {
-'sexe' 			: 1, # un pour garçon, 2 pour fille
-'garcons' 		: 2,
-'filles'	 	: 3,
-'canadiens' 	: 6,
-'suisses'		: 4,
-'belges'		: 2,
-'francais'		: 3,
-'stagiaires'	: 3,
-'aquatiques'	: 2,
-'nationalite_directeur' : 0,
-'triplet'		: 1,
-#'max_francais'		: True,	
-#'max_belges'	: True,
-#'max_suisses'	: True
-}
 
-equipe2 = {
-'sexe' 			: 1, # un pour garçon, 2 pour fille
-'garcons' 		: 2,
-'filles'	 	: 3,
-'canadiens' 	: 6,
-'suisses'		: 9,
-'belges'		: 0,
-'francais'		: 1,
-'stagiaires'	: 3,
-'aquatiques'	: 2,
-'nationalite_directeur' : 0,
-'triplet'		: 1,
-#'max_francais'		: True,	
-#'max_belges'	: True,
-#'max_suisses'	: True
-}
-a = (equipe,equipe2)
+
 def trouver_maximum(tableau,nationalite):
 	maxi = 0
 	for equipe in tableau.keys() :
@@ -241,9 +209,18 @@ def afficher_equipes():
 
 def afficher_config_equipe(nom,equipe):
 	print nom + " : "
-	for config in equipe.keys():
-		print "\t" + config + "\t:\t" + str(equipe[config])
-	return ''
+	print "\t Sexe \t\t\t:\t" + str(equipe['sexe'])
+	print "\t Garçons \t\t:\t" + str(equipe['garcons'])
+	print "\t Filles \t\t:\t" + str(equipe['filles'])
+	print "\t Canadiens \t\t:\t" + str(equipe['canadiens'])
+	print "\t Suisses \t\t:\t" + str(equipe['suisses'])
+	print "\t Belges \t\t:\t" + str(equipe['belges'])
+	print "\t Français \t\t:\t" + str(equipe['francais'])
+	print "\t Aquatiques \t\t:\t" + str(equipe['aquatiques'])
+	print "\t Nationalité dirlo \t:\t" + str(equipe['nationalite_directeur'])
+	print "\t triplet \t\t:\t" + str(equipe['triplet'])
+	
+	#return ''
 def cmpval(x,y):
     if x[1]>y[1]:
         return 1
