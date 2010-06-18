@@ -8,6 +8,7 @@ def trouver_maximum(tableau,nationalite):
 	for equipe in tableau.keys() :
 		if tableau[equipe][nationalite] == maxi:
 			tableau[equipe]['max_'+nationalite] = True
+			print "Max de " + nationalite + " : " + equipe
 		else :
 			 tableau[equipe]['max_'+nationalite] = False
 	return tableau
