@@ -10,7 +10,7 @@ equipe = {
 'stagiaires'	: 3,
 'aquatiques'	: 2,
 'nationalite_directeur' : 0,
-'triplet'		: 0,
+'triplet'		: 1,
 'max_francais'		: True,	
 'max_belges'	: True,
 'max_suisses'	: True
@@ -88,8 +88,13 @@ def calcul_point(equipe) :
 	#16 : Celui qui a le plus de suisse dans son équipe à la fin du jeu reçoit un bonus de 3 points par stagiaire de son équipe
 	if equipe['max_suisses'] == True:
 		points = points + 3 * equipe['stagiaires']
-	
 	affiche_points(16,points)
+	
+	#17 : attention à afficher avant : "Si une personne est en double dans une équipe (exactement la même carte), elle ne compte qu'une fois"
+	
+	#18 : Si une personne est en triple dans une équipe (exactement la même carte), vous recevez un bonus de 10 points
+	points = points + 10 * equipe['triplet']
+	affiche_points(18,points)
 	
 def affiche_points(etape,points):
 	print ("regle "+str(etape)+" : "+str(points)+" points")
