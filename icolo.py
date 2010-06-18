@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 equipe = {
 'sexe' 			: 1, # un pour garçon, 2 pour fille
-'garcons' 		: 0,
-'filles'	 	: 1,
+'garcons' 		: 2,
+'filles'	 	: 3,
 'canadiens' 	: 6,
 'suisses'		: 4,
 'belges'		: 2,
@@ -95,6 +95,16 @@ def calcul_point(equipe) :
 	#18 : Si une personne est en triple dans une équipe (exactement la même carte), vous recevez un bonus de 10 points
 	points = points + 10 * equipe['triplet']
 	affiche_points(18,points)
+	
+	#19 : Si vous êtes une fille et que vous possèdez plus de garçons que de fille dans votre équipe, vous marquez 5 points supplémentaires
+	if equipe['sexe'] == 2 and equipe['garcons']>equipe['filles'] :
+		points =  points = points + 5
+	affiche_points(19,points)
+	
+	#20 : Si vous êtes un garçon et que vous possèdez plus de filles que de garçons dans votre équipe, vous marquez 5 points supplémentaires
+	if equipe['sexe'] == 1 and equipe['garcons']<equipe['filles'] :
+		points =  points = points + 5
+	affiche_points(20,points)
 	
 def affiche_points(etape,points):
 	print ("regle "+str(etape)+" : "+str(points)+" points")
