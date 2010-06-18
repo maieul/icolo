@@ -11,10 +11,39 @@ equipe = {
 'aquatiques'	: 2,
 'nationalite_directeur' : 0,
 'triplet'		: 1,
-'max_francais'		: True,	
-'max_belges'	: True,
-'max_suisses'	: True
+#'max_francais'		: True,	
+#'max_belges'	: True,
+#'max_suisses'	: True
 }
+
+equipe2 = {
+'sexe' 			: 1, # un pour garçon, 2 pour fille
+'garcons' 		: 2,
+'filles'	 	: 3,
+'canadiens' 	: 6,
+'suisses'		: 9,
+'belges'		: 0,
+'francais'		: 1,
+'stagiaires'	: 3,
+'aquatiques'	: 2,
+'nationalite_directeur' : 0,
+'triplet'		: 1,
+#'max_francais'		: True,	
+#'max_belges'	: True,
+#'max_suisses'	: True
+}
+a = (equipe,equipe2)
+def trouver_maximum(tableau,nationalite):
+	maxi = 0
+	for equipe in tableau :
+		maxi = max(equipe[nationalite],maxi)
+	for equipe in tableau :
+		if equipe[nationalite] == maxi:
+			equipe['max_'+nationalite] = True
+		else :
+			 equipe['max_'+nationalite] = False
+	return tableau
+
 #fonction de calcul des points
 def calcul_point(equipe) :
 	points = 0
@@ -170,5 +199,7 @@ def creer_equipe():
 	
 	return equipe
 
-
-print (creer_equipe())
+trouver_maximum(a,'francais')
+trouver_maximum(a,'belges')
+trouver_maximum(a,'suisses')
+print (a)
