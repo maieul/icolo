@@ -35,13 +35,13 @@ equipe2 = {
 a = (equipe,equipe2)
 def trouver_maximum(tableau,nationalite):
 	maxi = 0
-	for equipe in tableau :
-		maxi = max(equipe[nationalite],maxi)
-	for equipe in tableau :
-		if equipe[nationalite] == maxi:
-			equipe['max_'+nationalite] = True
+	for equipe in tableau.keys() :
+		maxi = max(tableau[equipe][nationalite],maxi)
+	for equipe in tableau.keys() :
+		if tableau[equipe][nationalite] == maxi:
+			tableau[equipe]['max_'+nationalite] = True
 		else :
-			 equipe['max_'+nationalite] = False
+			 tableau[equipe]['max_'+nationalite] = False
 	return tableau
 
 #fonction de calcul des points
@@ -234,13 +234,26 @@ def afficher_equipes():
 		equipes = {}
 	nom_equipes = equipes.keys()
 	for nom in nom_equipes:
-		print nom + " : "
-		for config in equipes[nom].keys():
-			print "\t" + config + "\t:\t" + str(equipes[nom][config])
+		afficher_config_equipe(nom,equipes[nom])
 	
 
 	fichier.close()
-function calculer_tout_les_points()	
+
+def afficher_config_equipe(nom,equipe):
+	print nom + " : "
+	for config in equipe.keys():
+		print "\t" + config + "\t:\t" + str(equipe[config])
+	return ''
+def cmpval(x,y):
+    if x[1]>y[1]:
+        return 1
+    elif x[1]==y[1]:
+        return 0
+    else:
+        return -1
+ 
+	
+def calculer_tout_les_points():
 	import os
 	import sys
 	from pickle import dump, load
@@ -254,8 +267,19 @@ function calculer_tout_les_points()
 		fichier.close()
 	except:
 		equipes = {}
-		
-	
+	equipes = trouver_maximum(equipes,'francais')
+	equipes = trouver_maximum(equipes,'belges')
+	equipes = trouver_maximum(equipes,'suisses')
+	points = {}
+	for nom in equipes.keys():
+		print "* "+ nom + " *" 
+		afficher_config_equipe(nom,equipes[nom])
+		points[nom] = calcul_point(equipes[nom])
+	print "\n\n\n Résultats : "
+	points = points.items()
+	points.sort(cmpval)
+	for nom in points:
+		print nom[0] + "\t : \t" + str(nom[1]) 
 
 def function_de_base():
 	try:
