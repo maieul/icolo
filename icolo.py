@@ -145,7 +145,6 @@ def calcul_point(equipe) :
 
 def verifier_equipe(equipe):
 	if (equipe['garcons'] + equipe['filles']) == (equipe['suisses'] + equipe['francais'] + equipe['belges'] + equipe['canadiens']):
-		print ("Il y a erreur dans votre équipe : si on additionne les animateurs et les animatrices, le total est différent de la somme des animateurs de Nchaque nationalités")
 		return True
 	else : 
 		return False
@@ -189,7 +188,8 @@ def creer_equipe():
 		equipe['filles'] = poser_question('Nombre de filles')
 		equipe['garcons'] = poser_question('Nombre de garcons')
 		erreur_nombre = verifier_equipe(equipe)
-		
+		if erreur_nombre == False:
+			print ("Il y a erreur dans votre équipe : si on additionne les animateurs et les animatrices, le total est différent de la somme des animateurs de Nchaque nationalités")
 	
 	
 	equipe['aquatiques'] = poser_question('Nombre d\'animateurs aquatiques')
@@ -198,8 +198,78 @@ def creer_equipe():
 	equipe['nationalite_directeur'] = poser_question('Nombre d\'anim de la nationalitè du directeur')
 	
 	return equipe
+def creer_et_stocker_equipe():
+	import os
+	import sys
+	from pickle import dump, load
+	from os import chdir
+	chdir (sys.path[0])
 
-trouver_maximum(a,'francais')
-trouver_maximum(a,'belges')
-trouver_maximum(a,'suisses')
-print (a)
+	fichier = open('icolo_stockage.txt',"r")
+	try:
+		equipes = load(fichier)
+		#print (equipes)
+		fichier.close()
+	except:
+		equipes = {}
+	fichier = open('icolo_stockage.txt',"w")
+	equipe = creer_equipe()
+	equipes[equipe['nom']] = equipe
+	dump(equipes,fichier)
+	fichier.close()
+
+def afficher_equipes():
+	import os
+	import sys
+	from pickle import dump, load
+	from os import chdir
+	chdir (sys.path[0])
+
+	fichier = open('icolo_stockage.txt',"r")
+	try:
+		equipes = load(fichier)
+		#print (equipes)
+		fichier.close()
+	except:
+		equipes = {}
+	nom_equipes = equipes.keys()
+	for nom in nom_equipes:
+		print nom + " : "
+		for config in equipes[nom].keys():
+			print "\t" + config + "\t:\t" + str(equipes[nom][config])
+	
+
+	fichier.close()
+function calculer_tout_les_points()	
+	import os
+	import sys
+	from pickle import dump, load
+	from os import chdir
+	chdir (sys.path[0])
+
+	fichier = open('icolo_stockage.txt',"r")
+	try:
+		equipes = load(fichier)
+		#print (equipes)
+		fichier.close()
+	except:
+		equipes = {}
+		
+	
+
+def function_de_base():
+	try:
+		reponse = input("Que voulez vous faire ? : 1 pour créer une nouvelle équipe, 0 pour calculer les points,-1 pour afficher les équipes ")
+	except:
+		function_de_base()
+
+	if reponse == 1:
+		creer_et_stocker_equipe()
+		function_de_base()
+	elif reponse == -1:
+		afficher_equipes()
+	elif reponse == 0:
+		calculer_tout_les_points()
+		
+	
+function_de_base()
