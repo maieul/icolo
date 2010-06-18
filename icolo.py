@@ -116,6 +116,7 @@ def calcul_point(equipe) :
 
 def verifier_equipe(equipe):
 	if (equipe['garcons'] + equipe['filles']) == (equipe['suisses'] + equipe['francais'] + equipe['belges'] + equipe['canadiens']):
+		print ("Il y a erreur dans votre équipe : si on additionne les animateurs et les animatrices, le total est différent de la somme des animateurs de Nchaque nationalités")
 		return True
 	else : 
 		return False
@@ -132,13 +133,42 @@ def poser_question(question,erreur=False):
 		return int(solution)
 	except:
 	 	return poser_question(question,True)
-
+def demander_sexe():
+	sexe = input("Votre sexe ? Mettez 1 pour un garcon, 2 pour une fille : ")
+	if sexe != 1 and sexe !=2:
+		sexe = demander_sexe()
+	return sexe
+	
 def creer_equipe():
+	
 	equipe = {}
 	try :
 		equipe['nom'] = input("Votre nom ? (entourer le de guillemet) : ")
 	except: 
 		return creer_equipe()
 	
-	return equipe()
+	
+	
+	equipe['sexe'] = demander_sexe()
+	print ("Attention : si un personnage est un double, ne le comptez qu'une fois (règles n° 17) \n Listing des personnages")
+	erreur_nombre = False
+	while erreur_nombre == False:
+		equipe['canadiens'] = poser_question('Nombre de Canadiens')
+		equipe['suisses'] = poser_question('Nombre de Suisses')
+		equipe['belges'] = poser_question('Nombre de Belges')
+		equipe['francais'] = poser_question('Nombre de Français')
+		equipe['filles'] = poser_question('Nombre de filles')
+		equipe['garcons'] = poser_question('Nombre de garcons')
+		erreur_nombre = verifier_equipe(equipe)
+		
+	
+	
+	equipe['aquatiques'] = poser_question('Nombre d\'animateurs aquatiques')
+	equipe['stagiaires'] = poser_question('Nombre de stagiaires')
+	equipe['triplet'] = poser_question('Nombre de triplets')
+	equipe['nationalite_directeur'] = poser_question('Nombre d\'anim de la nationalitè du directeur')
+	
+	return equipe
+
+
 print (creer_equipe())
