@@ -34,7 +34,8 @@ def calcul_point(equipe) :
 	affiche_points(4,points)
 	
 	#5 : Si votre équipe comporte des personnes de chaque nationalité, votre nombre de points est doublé -> appliquer à la finally
-	
+	#if equipe['suisses'] >= 1 and equipe['francais'] >= 1 and equipe['belges'] >= 1 and equipe['canadiens'] >= 1:
+	#	points = points * 2
 	#6 : Si votre équipe comporte au moins un stagiaire vous marquez un bonus de 10 points
 	if equipe['stagiaires']>=1:
 		points = points + 10
@@ -96,12 +97,13 @@ def calcul_point(equipe) :
 	
 	#19 : Si vous êtes une fille et que vous possèdez plus de garçons que de fille dans votre équipe, vous marquez 5 points supplémentaires
 	if equipe['sexe'] == 2 and equipe['garcons']>equipe['filles'] :
-		points =  points = points + 5
+		points =  points + 5
 	affiche_points(19,points)
 	
 	#20 : Si vous êtes un garçon et que vous possèdez plus de filles que de garçons dans votre équipe, vous marquez 5 points supplémentaires
+	print equipe['sexe']
 	if equipe['sexe'] == 1 and equipe['garcons']<equipe['filles'] :
-		points =  points = points + 5
+		points =  points + 5
 	affiche_points(20,points)
 	
 	#5 : Si votre équipe comporte des personnes de chaque nationalité, votre nombre de points est doublé
@@ -201,8 +203,17 @@ def afficher_equipes():
 	except:
 		equipes = {}
 	nom_equipes = equipes.keys()
+	liste = []
+	juste_nom 	= input("Afficher juste les noms (1 pour oui)? ")
 	for nom in nom_equipes:
-		afficher_config_equipe(nom,equipes[nom])
+		if juste_nom != 1 :
+			afficher_config_equipe(nom,equipes[nom])
+		else :
+			liste.append(nom)
+	if juste_nom == 1 :
+		liste.sort()
+		for nom in liste:
+			print nom
 	
 
 	fichier.close()
@@ -296,5 +307,7 @@ def function_de_base():
 		calculer_tout_les_points()
 	elif reponse == -2:
 		supprimer_equipe()
+		
 	
+
 function_de_base()
