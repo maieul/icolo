@@ -217,6 +217,7 @@ def afficher_config_equipe(nom,equipe):
 	print "\t Suisses \t\t:\t" + str(equipe['suisses'])
 	print "\t Belges \t\t:\t" + str(equipe['belges'])
 	print "\t Français \t\t:\t" + str(equipe['francais'])
+	print "\t Stagiaires \t\t:\t" + str(equipe['stagiaires'])
 	print "\t Aquatiques \t\t:\t" + str(equipe['aquatiques'])
 	print "\t Nationalité dirlo \t:\t" + str(equipe['nationalite_directeur'])
 	print "\t triplet \t\t:\t" + str(equipe['triplet'])
@@ -229,7 +230,28 @@ def cmpval(x,y):
         return 0
     else:
         return -1
- 
+
+def supprimer_equipe():
+	import os
+	import sys
+	from pickle import dump, load
+	from os import chdir
+	chdir (sys.path[0])
+
+	fichier = open('icolo_stockage.txt',"r")
+	try:
+		equipes = load(fichier)
+		#print (equipes)
+		fichier.close()
+	except:
+		equipes = {}
+	#equipes = trouver_maximum()
+	afficher_equipes()
+	sup = input("Equipes à supprimer ")
+	del(equipes[sup])
+	fichier = open('icolo_stockage.txt',"w")
+	dump(equipes,fichier)
+	fichier.close()
 	
 def calculer_tout_les_points():
 	import os
@@ -261,7 +283,7 @@ def calculer_tout_les_points():
 
 def function_de_base():
 	try:
-		reponse = input("Que voulez vous faire ? : 1 pour créer une nouvelle équipe, 0 pour calculer les points,-1 pour afficher les équipes ")
+		reponse = input("Que voulez vous faire ? : 1 pour créer une nouvelle équipe, 0 pour calculer les points,-1 pour afficher les équipes, -2 pour en supprimer ")
 	except:
 		function_de_base()
 
@@ -270,8 +292,10 @@ def function_de_base():
 		function_de_base()
 	elif reponse == -1:
 		afficher_equipes()
+		#print "re"
 	elif reponse == 0:
 		calculer_tout_les_points()
-		
+	elif reponse == -2:
+		supprimer_equipe()
 	
 function_de_base()
