@@ -257,11 +257,13 @@ def supprimer_equipe():
 		equipes = {}
 	#equipes = trouver_maximum()
 	afficher_equipes()
-	sup = input("Equipes à supprimer ")
-	del(equipes[sup])
-	fichier = open('icolo_stockage.txt',"w")
-	dump(equipes,fichier)
-	fichier.close()
+	sup = input("Equipes à supprimer (\"fin\" pour cesser) ")
+	if sup != 'fin':
+		del(equipes[sup])
+		fichier = open('icolo_stockage.txt',"w")
+		dump(equipes,fichier)
+		fichier.close()
+		supprimer_equipe()
 	
 def calculer_tout_les_points():
 	import os
