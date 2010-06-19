@@ -160,11 +160,10 @@ def creer_equipe():
 		if erreur_nombre == False:
 			print ("Il y a erreur dans votre équipe : si on additionne les animateurs et les animatrices, le total est différent de la somme des animateurs de Nchaque nationalités")
 	
-	
-	equipe['aquatiques'] = poser_question('Nombre d\'animateurs aquatiques')
 	equipe['stagiaires'] = poser_question('Nombre de stagiaires')
-	equipe['triplet'] = poser_question('Nombre de triplets')
+	equipe['aquatiques'] = poser_question('Nombre d\'animateurs aquatiques')
 	equipe['nationalite_directeur'] = poser_question('Nombre d\'anim de la nationalitè du directeur')
+	equipe['triplet'] = poser_question('Nombre de triplets')
 	
 	return equipe
 def creer_et_stocker_equipe():
