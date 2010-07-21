@@ -268,7 +268,7 @@ def supprimer_equipe():
 		try:
 			del(equipes[sup])
 		except:
-			print "L'équipe demandée ( "Ò+sup.encode('utf-8')+" ) n'existe pas"
+			print "L'équipe demandée ( "+sup.encode('utf-8')+" ) n'existe pas"
 		fichier = open('icolo_stockage.txt',"w")
 		dump(equipes,fichier)
 		fichier.close()
