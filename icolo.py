@@ -142,7 +142,7 @@ def creer_equipe():
 	
 	equipe = {}
 	try :
-		equipe['nom'] = input("Votre nom ? (entourer le de guillemet - sans accent) : ")
+		equipe['nom'] = unicode(input("Votre nom ? (entourer le de guillemet) : "),'utf-8')
 	except: 
 		return creer_equipe()
 	
@@ -170,7 +170,7 @@ def creer_equipe():
 	equipe['aquatiques'] = poser_question('Nombre d\'animateurs aquatiques')
 	equipe['nationalite_directeur'] = poser_question('Nombre d\'anim de la nationalitè du directeur')
 	equipe['triplet'] = poser_question('Nombre de triplets')
-	print ("Merci, l'équipe « "+equipe['nom']+" » a été créée")
+	print ("Merci, l'équipe « "+equipe['nom'].encode('utf-8')+" » a été créée")
 	return equipe
 def creer_et_stocker_equipe():
 	import os
@@ -223,7 +223,7 @@ def afficher_equipes():
 	
 
 	fichier.close()
-
+    
 def afficher_config_equipe(nom,equipe):
 	print nom + " : "
 	print "\t Sexe \t\t\t:\t" + str(equipe['sexe'])
@@ -263,9 +263,12 @@ def supprimer_equipe():
 		equipes = {}
 	#equipes = trouver_maximum()
 	afficher_equipes()
-	sup = input("Equipes à supprimer (\"fin\" pour cesser) ")
+	sup = unicode(input("Equipes à supprimer (\"fin\" pour cesser) "),'utf-8')
 	if sup != 'fin':
-		del(equipes[sup])
+		try:
+			del(equipes[sup])
+		except:
+			print "L'équipe demandée ( "Ò+sup.encode('utf-8')+" ) n'existe pas"
 		fichier = open('icolo_stockage.txt',"w")
 		dump(equipes,fichier)
 		fichier.close()
@@ -298,7 +301,7 @@ def calculer_tout_les_points():
 	points.sort(cmpval)
 	for nom in points:
 		print nom[0] + "\t : \t" + str(nom[1]) 
-
+	
 def function_de_base():
 	try:
 		reponse = input("Que voulez vous faire ? : 1 pour créer une nouvelle équipe, 0 pour calculer les points,-1 pour afficher les équipes, -2 pour en supprimer ")
