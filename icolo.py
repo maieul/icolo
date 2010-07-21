@@ -142,7 +142,7 @@ def creer_equipe():
 	
 	equipe = {}
 	try :
-		equipe['nom'] = input("Votre nom ? (entourer le de guillemet) : ")
+		equipe['nom'] = input("Votre nom ? (entourer le de guillemet - sans accent) : ")
 	except: 
 		return creer_equipe()
 	
@@ -151,22 +151,26 @@ def creer_equipe():
 	equipe['sexe'] = demander_sexe()
 	print ("Attention : si un personnage est un double, ne le comptez qu'une fois (règles n° 17) \n Listing des personnages")
 	erreur_nombre = False
-	while erreur_nombre == False:
+	total_membre_equipe = 0
+	while erreur_nombre == False or total_membre_equipe!=8:
 		equipe['canadiens'] = poser_question('Nombre de Canadiens')
 		equipe['suisses'] = poser_question('Nombre de Suisses')
 		equipe['belges'] = poser_question('Nombre de Belges')
 		equipe['francais'] = poser_question('Nombre de Français')
 		equipe['filles'] = poser_question('Nombre de filles')
 		equipe['garcons'] = poser_question('Nombre de garcons')
+		total_membre_equipe = equipe['garcons']+equipe['filles']
 		erreur_nombre = verifier_equipe(equipe)
-		if erreur_nombre == False:
-			print ("Il y a erreur dans votre équipe : si on additionne les animateurs et les animatrices, le total est différent de la somme des animateurs de Nchaque nationalités")
+		if erreur_nombre == False :
+			print ("Il y a erreur dans votre équipe : si on additionne les animateurs et les animatrices, le total est différent de la somme des animateurs de chaque nationalité")
+		if total_membre_equipe!=8:
+			print ("Votre équipe n'est pas constituée de 8 membres")
 	
 	equipe['stagiaires'] = poser_question('Nombre de stagiaires')
 	equipe['aquatiques'] = poser_question('Nombre d\'animateurs aquatiques')
 	equipe['nationalite_directeur'] = poser_question('Nombre d\'anim de la nationalitè du directeur')
 	equipe['triplet'] = poser_question('Nombre de triplets')
-	
+	print ("Merci l'équipe « "+equipe['nom']+" » a été créée")
 	return equipe
 def creer_et_stocker_equipe():
 	import os
@@ -187,6 +191,7 @@ def creer_et_stocker_equipe():
 	equipes[equipe['nom']] = equipe
 	dump(equipes,fichier)
 	fichier.close()
+	#print ("ca passe")
 
 def afficher_equipes():
 	import os
