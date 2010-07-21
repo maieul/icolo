@@ -210,6 +210,7 @@ def afficher_equipes():
 	nom_equipes = equipes.keys()
 	liste = []
 	juste_nom 	= input("Afficher juste les noms (1 pour oui)? ")
+	print ("Il y a "+str(len(nom_equipes))+" équipes")
 	for nom in nom_equipes:
 		if juste_nom != 1 :
 			afficher_config_equipe(nom,equipes[nom])
