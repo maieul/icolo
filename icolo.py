@@ -170,7 +170,7 @@ def creer_equipe():
 	equipe['aquatiques'] = poser_question('Nombre d\'animateurs aquatiques')
 	equipe['nationalite_directeur'] = poser_question('Nombre d\'anim de la nationalitè du directeur')
 	equipe['triplet'] = poser_question('Nombre de triplets')
-	print ("Merci l'équipe « "+equipe['nom']+" » a été créée")
+	print ("Merci, l'équipe « "+equipe['nom']+" » a été créée")
 	return equipe
 def creer_et_stocker_equipe():
 	import os
