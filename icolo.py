@@ -102,7 +102,6 @@ def calcul_point(equipe) :
 	affiche_points(19,points)
 	
 	#20 : Si vous êtes un garçon et que vous possèdez plus de filles que de garçons dans votre équipe, vous marquez 5 points supplémentaires
-	print equipe['sexe']
 	if equipe['sexe'] == 1 and equipe['garcons']<equipe['filles'] :
 		points =  points + 5
 	affiche_points(20,points)
@@ -121,7 +120,7 @@ def verifier_equipe(equipe):
 	else : 
 		return False
 def affiche_points(etape,points):
-	print ("regle "+str(etape)+" : "+str(points)+" points")
+	print ("\t regle "+str(etape)+" : "+str(points)+" points")
 
 def poser_question(question,erreur=False):
 	try:
@@ -290,19 +289,19 @@ def calculer_tout_les_points():
 	equipes = trouver_maximum(equipes,'suisses')
 	points = {}
 	for nom in equipes.keys():
-		print "* "+ nom + " *" 
 		afficher_config_equipe(nom,equipes[nom])
+		print "\n"
 		points[nom] = calcul_point(equipes[nom])
-	print "\n\n\n Résultats : "
+	print "\n\n\nRésultats : "
 	points = points.items()
-	points.sort(cmpval)
+	points.sort(cmpval,reverse=True)
 	for nom in points:
-		print nom[0] + "\t : \t" + str(nom[1]) 
+		print "\t" + nom[0] + "\t : \t" + str(nom[1]) 
 	function_de_base()
 	
 def function_de_base():
 	try:
-		reponse = input("Que voulez vous faire ? : 1 pour créer une nouvelle équipe, 0 pour calculer les points,-1 pour afficher les équipes, -2 pour en supprimer, -3 pour quitter ")
+		reponse = input("Que voulez vous faire ? : \n\t1 pour créer une nouvelle équipe ;\n\t0 pour calculer les points ;\n\t-1 pour afficher les équipes ;\n\t-2 pour en supprimer ;\n\t-3 pour quitter ;\nVotre choix : ")
 	except:
 		function_de_base()
 
