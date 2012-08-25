@@ -308,7 +308,7 @@ def calculer_tout_les_points():
 	
 def function_de_base():
 	try:
-		reponse = input("Que voulez vous faire ? : 1 pour créer une nouvelle équipe, 0 pour calculer les points,-1 pour afficher les équipes, -2 pour en supprimer ")
+		reponse = input("Que voulez vous faire ? : 1 pour créer une nouvelle équipe, 0 pour calculer les points,-1 pour afficher les équipes, -2 pour en supprimer, -3 pour quitter ")
 	except:
 		function_de_base()
 
@@ -322,6 +322,8 @@ def function_de_base():
 		calculer_tout_les_points()
 	elif reponse == -2:
 		supprimer_equipe()
+	elif reponse == -3:
+		quit()
 		
 	
 
