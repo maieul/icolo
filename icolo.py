@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 # Maïeul ROUQUETTE - Licence GPL 3.0
-# Version 1.0
+# Version 1.1
 
 def trouver_maximum(tableau,nationalite):
 	maxi = 0
