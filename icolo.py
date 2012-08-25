@@ -186,7 +186,6 @@ def creer_et_stocker_equipe():
 		fichier = open('icolo_stockage.txt','a')
 	try:
 		equipes = load(fichier)
-		#print (equipes)
 		fichier.close()
 	except:
 		equipes = {}
@@ -195,8 +194,7 @@ def creer_et_stocker_equipe():
 	equipes[equipe['nom']] = equipe
 	dump(equipes,fichier)
 	fichier.close()
-	#print ("ca passe")
-
+	
 def afficher_equipes():
 	import os
 	import sys
@@ -207,7 +205,6 @@ def afficher_equipes():
 	fichier = open('icolo_stockage.txt',"r")
 	try:
 		equipes = load(fichier)
-		#print (equipes)
 		fichier.close()
 	except:
 		equipes = {}
@@ -241,7 +238,6 @@ def afficher_config_equipe(nom,equipe):
 	print "\t Nationalité dirlo \t:\t" + str(equipe['nationalite_directeur'])
 	print "\t triplet \t\t:\t" + str(equipe['triplet'])
 	
-	#return ''
 def cmpval(x,y):
     if x[1]>y[1]:
         return 1
@@ -260,11 +256,9 @@ def supprimer_equipe():
 	fichier = open('icolo_stockage.txt',"r")
 	try:
 		equipes = load(fichier)
-		#print (equipes)
 		fichier.close()
 	except:
 		equipes = {}
-	#equipes = trouver_maximum()
 	afficher_equipes()
 	sup = unicode(input("Equipes à supprimer (\"fin\" pour cesser) "),'utf-8')
 	if sup != 'fin':
@@ -288,7 +282,6 @@ def calculer_tout_les_points():
 	fichier = open('icolo_stockage.txt',"r")
 	try:
 		equipes = load(fichier)
-		#print (equipes)
 		fichier.close()
 	except:
 		equipes = {}
@@ -318,7 +311,6 @@ def function_de_base():
 		function_de_base()
 	elif reponse == -1:
 		afficher_equipes()
-		#print "re"
 	elif reponse == 0:
 		calculer_tout_les_points()
 	elif reponse == -2:
