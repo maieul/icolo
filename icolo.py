@@ -142,14 +142,14 @@ def creer_equipe():
 	
 	equipe = {}
 	try :
-		equipe['nom'] = unicode(input("Votre nom ? (entourer le de guillemet) : "),'utf-8')
+		equipe['nom'] = unicode(input("Votre nom ? (entourez le de guillemet) : "),'utf-8')
 	except: 
 		return creer_equipe()
 	
 	
 	
 	equipe['sexe'] = demander_sexe()
-	print ("Attention : si un personnage est un double, ne le comptez qu'une fois (règles n° 17) \n Listing des personnages")
+	print ("Attention : si un personnage est un double, ne le comptez qu'une fois (règle n° 17) \n Listing des personnages")
 	erreur_nombre = False
 	total_membre_equipe = 0
 	while erreur_nombre == False or total_membre_equipe!=8:
@@ -168,7 +168,7 @@ def creer_equipe():
 	
 	equipe['stagiaires'] = poser_question('Nombre de stagiaires')
 	equipe['aquatiques'] = poser_question('Nombre d\'animateurs aquatiques')
-	equipe['nationalite_directeur'] = poser_question('Nombre d\'anim de la nationalitè du directeur')
+	equipe['nationalite_directeur'] = poser_question('Nombre d\'anim de la nationalité du directeur')
 	equipe['triplet'] = poser_question('Nombre de triplets')
 	print ("Merci, l'équipe « "+equipe['nom'].encode('utf-8')+" » a été créée")
 	return equipe
