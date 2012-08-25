@@ -179,7 +179,10 @@ def creer_et_stocker_equipe():
 	from os import chdir
 	chdir (sys.path[0])
 
-	fichier = open('icolo_stockage.txt',"r")
+	try:
+		fichier = open('icolo_stockage.txt',"r")
+	except IOError:
+		fichier = open('icolo_stockage.txt','a')
 	try:
 		equipes = load(fichier)
 		#print (equipes)
