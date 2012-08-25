@@ -224,9 +224,8 @@ def afficher_equipes():
 		liste.sort()
 		for nom in liste:
 			print nom
-	
-
 	fichier.close()
+	function_de_base()
     
 def afficher_config_equipe(nom,equipe):
 	print nom + " : "
@@ -277,6 +276,7 @@ def supprimer_equipe():
 		dump(equipes,fichier)
 		fichier.close()
 		supprimer_equipe()
+	function_de_base()
 	
 def calculer_tout_les_points():
 	import os
@@ -305,6 +305,7 @@ def calculer_tout_les_points():
 	points.sort(cmpval)
 	for nom in points:
 		print nom[0] + "\t : \t" + str(nom[1]) 
+	function_de_base()
 	
 def function_de_base():
 	try:
