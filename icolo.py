@@ -143,7 +143,7 @@ def creer_equipe():
 	
 	equipe = {}
 	try :
-		equipe['nom'] = unicode(input("Votre nom ? (entourez le de guillemet) : "),'utf-8')
+		equipe['nom'] = unicode(raw_input("Votre nom ? : "),'utf-8')
 	except: 
 		return creer_equipe()
 	
